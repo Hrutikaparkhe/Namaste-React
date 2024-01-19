@@ -9,6 +9,11 @@
 .navBar > h4 {
   margin: 5px;
 }
+.navbar-link-style {
+  text-decoration: none;
+  color: black;
+  padding: 5px;
+}
 .header {
   padding: 5px;
   margin: 10px;
