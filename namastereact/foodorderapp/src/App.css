@@ -17,15 +17,16 @@
   border: 1px solid black;
 }
 .card-container {
-  width: 193px;
-  height: 600px;
+  width: 300px;
+  height: 500px;
   margin: 10px;
   padding: 5px;
   background-color: #d3d3d3;
 }
-.container :hover {
+.card :hover {
   border: 1px solid black;
 }
+
 .card-img {
   width: 100%;
   height: 50%;
@@ -33,6 +34,7 @@
 .card {
   display: flex;
   flex-wrap: wrap;
+  cursor: pointer;
 }
 .container-btn {
   margin: 10px;
@@ -54,4 +56,23 @@
 }
 .search-input {
   margin: 10px;
+}
+.menu-info,
+.menu-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 40px;
+  border-bottom: 1px solid black;
+  border-bottom-style: dotted;
+}
+.rest-ratings {
+  border: none;
+  height: 60px;
+  padding: 5px;
+  background-color: #f0f0f0;
+  cursor: pointer;
+}
+.link-style {
+  text-decoration: none;
+  color: black;
 }
