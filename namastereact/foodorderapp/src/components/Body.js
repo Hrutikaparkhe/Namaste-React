@@ -2,10 +2,14 @@ import { useEffect, useState } from "react";
 import Card from "./Card";
 import ShimmerUI from "./ShimmerUI";
 import { Link } from "react-router-dom";
+import UseOnlineStatus from "./utils/UseOnlineStatus";
+
 const Body = () => {
+  const online = UseOnlineStatus();
   const [restList, setRestList] = useState([]);
   const [filteredList, setFilteredList] = useState([]);
   const [searchText, setSearcheText] = useState("");
+
   useEffect(() => {
     fetchApiData();
   }, []);
@@ -18,6 +22,9 @@ const Body = () => {
     setRestList(filtereArr);
     setFilteredList(filtereArr);
   };
+  if (!online) {
+    return <h4>You or Offline!! please check your connectivity status</h4>;
+  }
   return restList.length > 0 ? (
     <div className="body">
       <div className="container">
