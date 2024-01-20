@@ -1,22 +1,24 @@
-import { useEffect, useState } from "react";
 import ShimmerUI from "./ShimmerUI";
 import { useParams } from "react-router-dom";
 import { MENU_IMAGE } from "./utils/constants";
-import { MENU_DATA_URL } from "./utils/constants";
+import UseMenuCard from "./utils/UseMenuCard";
 const RestaurantMenu = () => {
-  const [menuDetails, setMenuDetails] = useState(null);
   const { resId } = useParams();
-  useEffect(() => {
-    fetchMenuInfo();
-  }, []);
-  const fetchMenuInfo = async () => {
-    const data = await fetch(MENU_DATA_URL + resId);
-    const json = await data.json();
-    setMenuDetails(json?.data);
-  };
+  // useEffect(() => {
+  //   fetchMenuInfo();
+  // }, []);
+  // const fetchMenuInfo = async () => {
+  //   const data = await fetch(MENU_DATA_URL + resId);
+  //   const json = await data.json();
+  //   setMenuDetails(json?.data);
+  // };
+  // here we used the custom hook  to fetch the api data using UseMenuCard Hook instead of using above useEffect logic inside component only
+  const menuDetails = UseMenuCard(resId);
+
   if (menuDetails === null) {
     return <ShimmerUI />;
   }
+
   const { name, cuisines, feeDetails, locality, areaName, totalRatingsString, costForTwoMessage } = menuDetails?.cards[0]?.card?.card?.info;
   const { message } = feeDetails;
   const { itemCards } = menuDetails?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[4]?.card?.card;
@@ -38,7 +40,7 @@ const RestaurantMenu = () => {
         </div>
       </div>
 
-      {itemCards.map((item) => (
+      {itemCards?.map((item) => (
         <div className="menu-container" key={item.card.info.id}>
           <div>
             <h3>{item.card.info.name}</h3>
